@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.DTOs;
 using API.Errors;
 using Core.Entities.Identity;
+using Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,9 +16,11 @@ namespace API.Controllers
     {
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
+        private readonly ITokenService tokenService;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser>
-        signInManager) {
+        signInManager, ITokenService tokenService) {
+            this.tokenService = tokenService;
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
@@ -34,7 +37,7 @@ namespace API.Controllers
 
             return new UserDto{
                 Email = user.Email
-                , Token = "This is a token"
+                , Token = tokenService.CreateToken(user)
                 , DisplayName = user.DisplayName
             };
         }
@@ -56,7 +59,7 @@ namespace API.Controllers
             return new UserDto 
             {
                 DisplayName = user.DisplayName
-                , Token = "token"
+                , Token = tokenService.CreateToken(user)
                 , Email = user.Email
             };
         }
