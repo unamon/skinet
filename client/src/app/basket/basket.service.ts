@@ -29,7 +29,7 @@ export class BasketService {
     return this.http.post<Basket>(this.baseUrl + 'basket', basket).subscribe({
       next: (basket) => {
         this.basketSource.next(basket), 
-        this.calculateTotals;
+        this.calculateTotals();
       },
     });
   }
