@@ -15,13 +15,11 @@ export class TextInputComponent implements ControlValueAccessor{
   }
 
   writeValue(obj: any): void {
-    throw new Error('Method not implemented.');
   }
   registerOnChange(fn: any): void {
-    throw new Error('Method not implemented.');
+    
   }
   registerOnTouched(fn: any): void {
-    throw new Error('Method not implemented.');
   }
   
 

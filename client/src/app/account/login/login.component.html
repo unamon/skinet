@@ -11,11 +11,4 @@
             </div>
         </form>
     </div>
-    <div class="col-4 ms-5">
-        <p>Form Status: {{loginForm.status}}</p>
-        <p>Email Status: {{loginForm.get('email')?.status}}</p>
-        <p>Email touched: {{loginForm.get('email')?.touched}}</p>
-        <p>Email dirty: {{loginForm.get('email')?.dirty}}</p>
-        <pre>{{loginForm.value | json}}</pre>
-    </div>
 </div>
