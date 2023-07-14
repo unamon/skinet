@@ -21,6 +21,7 @@ namespace Infrastructure.Data.Config
                 o => o.ToString(),
                 o => (OrderStatus) Enum.Parse(typeof(OrderStatus), o)
             );
+            builder.Navigation( a => a.ShipToAddress).IsRequired();
 
             builder.HasMany(o => o.OrderItems).WithOne().OnDelete(DeleteBehavior.Cascade);
         }
