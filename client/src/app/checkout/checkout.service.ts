@@ -18,6 +18,6 @@ export class CheckoutService {
       map(dm => {
         return dm.sort((a, b) => b.price - a.price)
       })
-    )
+    ) 
   }
 }
