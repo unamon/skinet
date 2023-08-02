@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@angular/cli": "^16.1.6",
     "cuid": "^3.0.0",
     "xng-breadcrumb": "^9.0.0"
   }

@@ -23,7 +23,7 @@ import { OrderModule } from './orders/order.module';
     HttpClientModule,
     CoreModule,
     HomeModule,
-    OrderModule,
+    OrderModule
   ],  
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi: true},

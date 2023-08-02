@@ -10,24 +10,23 @@ export interface Order {
     buyerEmail: string
     orderDate: string
     shipToAddress: Address
+    shippingPrice: number
     deliveryMethod: any
     orderItems: OrderItem[]
     subtotal: number
+    total: number
     status: number
     paymentIntentId: any
     id: number
   }
     
   export interface OrderItem {
-    itemOrdered: ItemOrdered
     price: number
     quantity: number
-    id: number
-  }
-  
-  export interface ItemOrdered {
-    productItemId: number
+    productId: number
     productName: string
     pictureUrl: string
   }
+  
+  
   

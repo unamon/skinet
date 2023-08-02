@@ -51,7 +51,7 @@ namespace API.Controllers
 
         [HttpGet("{id}")]
 
-        public async Task<ActionResult<Order>> GetOrderForUserById(int id)
+        public async Task<ActionResult<OrderToReturnDto>> GetOrderForUserById(int id)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
             var order = await orderService.GetOrderByIdAsync(id, email);
@@ -61,7 +61,7 @@ namespace API.Controllers
                 return NotFound(new ApiResponse(404));
             }
 
-            return order;
+            return Ok(mapper.Map<OrderToReturnDto>(order));
         }
 
         [HttpGet("deliveryMethods")]
