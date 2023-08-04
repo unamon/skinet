@@ -65,7 +65,7 @@ namespace Infrastructure.Services
             } else { 
               var options = new PaymentIntentUpdateOptions  
               {
-                Amount = (long) basket.Items.Sum(i => i.Quantity * (i.Price * 100)) + (long) shippingPrice * 100,
+                Amount = (long) basket.Items.Sum(i => i.Quantity * i.Price ) + (long) shippingPrice,
               };
                 await service.UpdateAsync(basket.PaymentIntentId, options);
             }
