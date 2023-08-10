@@ -25,7 +25,6 @@ export class BasketService {
       .pipe(
         map(basket => {
           this.basketSource.next(basket)
-          console.log(basket)
         })
       )
   }
@@ -33,11 +32,12 @@ export class BasketService {
   setShippingPrice(deliveryMethod: DeliveryMethod)
   {
     const basket = this.getCurrentBasketValue()
-    this.shipping = deliveryMethod.price;
     if (basket) {
       basket.deliveryMethodId = deliveryMethod.id
+      basket.shippingPrice = deliveryMethod.price;
       this.setBasket(basket);
     }
+
   }
 
   getBasket(id: string) {
@@ -139,9 +139,8 @@ export class BasketService {
     const basket = this.getCurrentBasketValue();
     if (!basket) return;
     const subtotal = basket.items.reduce((a, b) => b.price * b.quantity + a, 0);
-    const total = this.shipping + subtotal;
-
-    this.basketTotalSource.next({ shipping: this.shipping, subtotal, total });
+    const total = basket.shippingPrice + subtotal;
+    this.basketTotalSource.next({ shipping:basket.shippingPrice , subtotal, total });
   }
 
   private isProduct(item: Product | BasketItem) : item is Product
