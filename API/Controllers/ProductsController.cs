@@ -28,6 +28,7 @@ namespace API.Controllers
             this.mapper = mapper;
         }
 
+        [Cached(600)]
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDTO>>> GetProducts(
             [FromQuery]ProductSpecParams prodParams)
@@ -44,6 +45,7 @@ namespace API.Controllers
             return Ok(new Pagination<ProductToReturnDTO>(prodParams.PageIndex, prodParams.PageSize, totalItems, data));
         }
 
+        [Cached(600)]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
@@ -58,11 +60,13 @@ namespace API.Controllers
             return mapper.Map<Product, ProductToReturnDTO>(product);
         }
 
+        [Cached(600)]
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands(){
             return Ok(await prodBrandRepo.ListAllAsync());
         }
-
+        
+        [Cached(600)]
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes(){
             return Ok(await prodTypeRepo.ListAllAsync());
