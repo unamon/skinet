@@ -19,13 +19,10 @@ namespace API.Extensions
         {
             services.AddDbContext<AppIdentityDbContext>(opt =>
             {
-                opt.UseSqlite(config.GetConnectionString("IdentityConnection"));
+                opt.UseNpgsql(config.GetConnectionString("IdentityConnection"));
             });
 
-            services.AddIdentityCore<AppUser>(opt =>
-            {
-                //
-            })
+            services.AddIdentityCore<AppUser>(opt =>{})
             .AddEntityFrameworkStores<AppIdentityDbContext>()
             .AddSignInManager<SignInManager<AppUser>>();
 
