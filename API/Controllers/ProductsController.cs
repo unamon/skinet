@@ -28,6 +28,10 @@ namespace API.Controllers
             this.mapper = mapper;
         }
 
+        public ProductsController()
+        {
+        }
+
         [Cached(600)]
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDTO>>> GetProducts(
@@ -70,6 +74,11 @@ namespace API.Controllers
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes(){
             return Ok(await prodTypeRepo.ListAllAsync());
+        }
+
+        public async Task<ActionResult> GetProductCategories()
+        {
+            return Ok(":)");
         }
     }
 }
