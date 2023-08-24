@@ -15,16 +15,19 @@ namespace API.Controllers
         private readonly IGenericRepository<Product> prodRepo;
         private readonly IGenericRepository<ProductBrand> prodBrandRepo;
         private readonly IGenericRepository<ProductType> prodTypeRepo;
+        private readonly IGenericRepository<ProductCategory> prodCatRepo;
         private readonly IMapper mapper;
 
         public ProductsController(IGenericRepository<Product> prodRepo,
                                   IGenericRepository<ProductBrand> prodBrandRepo,
                                   IGenericRepository<ProductType> prodTypeRepo,
+                                  IGenericRepository<ProductCategory> prodCatRepo,
                                   IMapper mapper)
         {
             this.prodRepo = prodRepo;
             this.prodBrandRepo = prodBrandRepo;
             this.prodTypeRepo = prodTypeRepo;
+            this.prodCatRepo = prodCatRepo;
             this.mapper = mapper;
         }
 
@@ -78,7 +81,8 @@ namespace API.Controllers
 
         public async Task<ActionResult> GetProductCategories()
         {
-            return Ok(":)");
+            return Ok(await prodCatRepo.ListAllAsync());
+            
         }
     }
 }
