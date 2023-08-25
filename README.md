@@ -1,8 +1,7 @@
 # Skinet 
 
 ## Description
-This is a demonstration of an online store with a .NET backend. It was created as a practice project, and in order to learn the technology stack involved. 
-It was largely made following [Neil Cumming's Course](https://www.udemy.com/course/learn-to-build-an-e-commerce-app-with-net-core-and-angular/), but other features are planned to expand it. 
+This is a demonstration of an online store with a .NET backend. It's a side project created to learn more about .NET and the technology stack involved in such an application.
 
 ## Stack 
 - [Angular](https://angular.io/) as a front-end framework. 
