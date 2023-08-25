@@ -133,12 +133,17 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("ProductBrandId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("ProductCategoryId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("ProductTypeId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductBrandId");
+
+                    b.HasIndex("ProductCategoryId");
 
                     b.HasIndex("ProductTypeId");
 
@@ -159,6 +164,22 @@ namespace Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductBrands");
+                });
+
+            modelBuilder.Entity("Core.Entities.ProductCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("Core.Entities.ProductType", b =>
@@ -260,6 +281,12 @@ namespace Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Core.Entities.ProductCategory", "ProductCategory")
+                        .WithMany()
+                        .HasForeignKey("ProductCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Core.Entities.ProductType", "ProductType")
                         .WithMany()
                         .HasForeignKey("ProductTypeId")
@@ -267,6 +294,8 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("ProductBrand");
+
+                    b.Navigation("ProductCategory");
 
                     b.Navigation("ProductType");
                 });
