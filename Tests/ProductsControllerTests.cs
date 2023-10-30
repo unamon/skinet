@@ -1,6 +1,7 @@
 using API.Controllers;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using Core.Entities;
 using Moq;
 
 namespace Tests;
@@ -20,7 +21,7 @@ public class ProductsControllerTests
     public void GetCategoriesInvokesRepository()
     {
         // Given
-    
+        var catRepo = Mock<IGenericRepository<ProductCategory>>();
         // When
     
         // Then
